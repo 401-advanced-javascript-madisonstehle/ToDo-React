@@ -6,8 +6,8 @@
 
 ### Links and Resources
 
-- [submission PR]()
-- [ci/cd github actions]()
+- [submission PR](https://github.com/madisonstehle/ToDo-React/pull/1)
+- [ci/cd github actions](https://github.com/madisonstehle/ToDo-React/actions)
 
 
 ### Setup
