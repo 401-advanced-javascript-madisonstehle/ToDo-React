@@ -5,6 +5,10 @@ function Form(props) {
   const [ assignedTo, setAssignedTo ] = useState('');
   const [ status, setStatus ] = useState(false);
 
+  function updateList() {
+    let item = { description, assignedTo, status }
+    props.updateList( [ ...props.allTasks, item ] );
+  }
 
   return (            
     <>
@@ -42,7 +46,7 @@ function Form(props) {
       </div>
 
 
-      <button type='submit'>Submit</button>
+      <button type='submit' onClick={ updateList }>Submit</button>
     </>
   )
 }
