@@ -1,4 +1,5 @@
 import React from 'react';
+import CardColumns from 'react-bootstrap/CardColumns';
 
 import Item from './ToDoItem.js';
 
@@ -10,9 +11,9 @@ function List(props) {
   }
 
   return (
-    <div className='list'>
+    <CardColumns>
       { items }
-    </div>
+    </CardColumns>
   )
 }
 

@@ -1,10 +1,11 @@
 import React from "react";
+import Navbar from 'react-bootstrap/Navbar';
 
 function Footer() {
   return (
-    <div className="footer">
-      <h4>&copy; 2020 Madison Stehle</h4>
-    </div>
+    <Navbar sticky="bottom" bg='dark' variant= 'dark'>
+      <Navbar.Brand>&copy; 2020 Madison Stehle</Navbar.Brand>
+    </Navbar>
   );
 }
 

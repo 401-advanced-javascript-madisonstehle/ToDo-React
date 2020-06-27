@@ -1,54 +1,78 @@
 import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
-function Form(props) {
-  const [ description, setDescription ] = useState('');
-  const [ assignedTo, setAssignedTo ] = useState('');
-  const [ status, setStatus ] = useState(false);
+function ToDoForm(props) {
+  const [ description, setDescription ] = useState(props.description || '');
+  const [ assignedTo, setAssignedTo ] = useState(props.assignedTo || '');
+  const [ status, setStatus ] = useState(props.status || 'Incomplete');
+  const [ difficulty, setDifficulty ] = useState(props.difficulty || 1);
 
-  function updateList() {
-    let item = { description, assignedTo, status }
+
+  function updateList(e) {
+    e.preventDefault();
+    let item = { description, assignedTo, status, difficulty }
     props.updateList( [ ...props.allTasks, item ] );
   }
 
   return (            
-    <>
-      <div>
-        <label>Task Description: </label>
-        <input
-            type='text'
+    <Form>
+      <Form.Group controlId='description'>
+        <Form.Label>Task Description: </Form.Label>
+        <Form.Control
+            as='textarea'
+            rows='3'
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);
             }}
           />
-      </div>
+      </Form.Group>
 
-      <div>
-        <label>Assigned To: </label>
-        <input
+      <Form.Group controlId='assignedTo'>
+        <Form.Label>Assigned To: </Form.Label>
+        <Form.Control
             type='text'
+            placeholder='Enter name'
             value={assignedTo}
             onChange={(e) => {
               setAssignedTo(e.target.value);
             }}    
           />
-      </div>
+      </Form.Group>
 
-      <div>
-        <label>Completed: </label>
-        <input
+      <Form.Group controlId='status'>
+        <Form.Label>Completed: </Form.Label>
+        <Form.Check
+            id='status-switch'
             type='checkbox'
+            label={status ? 'Complete' : 'Incomplete'}
             checked={status}
             onChange={(e) => {
               setStatus(!status);
             }}
         />
-      </div>
+      </Form.Group>
 
+      <Form.Group>
+        <Form.Label>Difficulty:</Form.Label>
+        <Form.Control 
+          type='range'
+          min={1}
+          max={5}
+          step={1}
+          value={difficulty}
+          onChange={(e) => {
+            setDifficulty(e.target.value);
+          }}
+        />
+      </Form.Group>
 
-      <button type='submit' onClick={ updateList }>Submit</button>
-    </>
+      <Button variant='primary' type='submit' onClick={ updateList }>Submit</Button>
+    </Form>
   )
 }
 
-export default Form;
+
+
+export default ToDoForm;
