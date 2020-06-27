@@ -1,5 +1,4 @@
-# LAB - Class 22
-# Lab 26
+# LAB - Class 26
 ## ToDo-React
 
 ### Author: Madison Stehle
@@ -8,6 +7,7 @@
 
 - [submission PR](https://github.com/madisonstehle/ToDo-React/pull/1)
 - [ci/cd github actions](https://github.com/madisonstehle/ToDo-React/actions)
+- [netlify deployed site](https://hungry-joliot-61928d.netlify.app/)
 
 
 ### Setup
@@ -19,3 +19,6 @@
 #### Tests
 
 - `npm test` will run tests for App and Counter
+
+### UML
+![Lab 26 UML](./assets/lab26.png)
