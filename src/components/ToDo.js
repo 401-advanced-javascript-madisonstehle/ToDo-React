@@ -22,7 +22,6 @@ function ToDo() {
       }
     }
 
-    console.log('incomplete', incomplete);
     if (incomplete === 1) document.title = '1 incomplete task';
     else if (incomplete) document.title = `${incomplete} incomplete tasks`;
     else document.title = 'All tasks complete!';

@@ -6,7 +6,7 @@ function Item(props) {
   const [ status, setStatus ] = useState(props.item.status)
 
   return (
-    <Card>
+    <Card border='dark'>
       <Card.Body>
         <Card.Title as='h5'>Task:</Card.Title>
         <Card.Text>{props.item.description}</Card.Text>
@@ -21,6 +21,7 @@ function Item(props) {
         <Form>
           <Form.Group controlId={`status-${props.idx}`}>
             <Form.Check
+                variant=''
                 id={`status-switch-${props.idx}`}
                 type='checkbox'
                 label={!status ? 'Complete' : 'Incomplete'}
@@ -37,35 +38,6 @@ function Item(props) {
         </Form>
       </Card.Body>
     </Card>
-
-    // <div className='item'>
-    //   <div>
-    //     <h5>Task:</h5>
-    //     <p>{props.item.description}</p>
-    //   </div>
-
-    //   <div>
-    //     <h5>Assigned To:</h5>
-    //     <p>{props.item.assignedTo}</p>
-    //   </div>
-
-    //   <div>
-    //     <h5>Difficulty:</h5>
-    //     <p>{props.item.difficulty}</p>
-    //   </div>
-
-    //   <div>
-    //     <h5>Status:</h5>
-    //     <input
-    //       type='checkbox'
-    //       checked={status}
-    //       onChange={() => {
-    //         setStatus(!status);
-    //       }}
-    //     />
-    //   </div>
-
-    // </div>
   )
 }
 

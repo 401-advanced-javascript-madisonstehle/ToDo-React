@@ -68,7 +68,7 @@ function ToDoForm(props) {
         />
       </Form.Group>
 
-      <Button variant='primary' type='submit' onClick={ updateList }>Submit</Button>
+      <Button variant='primary' size='lg' type='submit' onClick={ updateList }>Submit</Button>
     </Form>
   )
 }
