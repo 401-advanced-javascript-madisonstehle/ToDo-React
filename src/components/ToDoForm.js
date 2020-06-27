@@ -46,8 +46,8 @@ function ToDoForm(props) {
         <Form.Check
             id='status-switch'
             type='checkbox'
-            label={status ? 'Complete' : 'Incomplete'}
-            checked={status}
+            label={!status ? 'Complete' : 'Incomplete'}
+            checked={!status}
             onChange={(e) => {
               setStatus(!status);
             }}

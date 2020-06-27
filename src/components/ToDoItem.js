@@ -19,17 +19,20 @@ function Item(props) {
 
         <Card.Title as='h5'>Status:</Card.Title>
         <Form>
-          <Form.Group controlId='status'>
-          <Form.Label>Completed: </Form.Label>
-          <Form.Check
-              id='status-switch'
-              type='checkbox'
-              label={status ? 'Complete' : 'Incomplete'}
-              checked={status}
-              onChange={(e) => {
-                setStatus(!status);
-              }}
-          />
+          <Form.Group controlId={`status-${props.idx}`}>
+            <Form.Check
+                id={`status-switch-${props.idx}`}
+                type='checkbox'
+                label={!status ? 'Complete' : 'Incomplete'}
+                checked={!status}
+                onChange={(e) => {
+                  let newTask = {...props.item};
+                  newTask.status = !status;
+
+                  setStatus(!status);
+                  props.updateTask(props.idx, newTask);
+                }}
+            />
           </Form.Group>
         </Form>
       </Card.Body>

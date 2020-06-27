@@ -7,6 +7,12 @@ import List from './ToDoList.js';
 function ToDo() {
   const [ list, setList ] = useState([]);
 
+  function updateTask(idx, updatedTask) {
+    let currentTasks = [...list];
+    currentTasks[idx] = updatedTask;
+    setList(currentTasks);
+  }
+
   useEffect(() => {
     let incomplete = 0;
 
@@ -16,6 +22,7 @@ function ToDo() {
       }
     }
 
+    console.log('incomplete', incomplete);
     if (incomplete === 1) document.title = '1 incomplete task';
     else if (incomplete) document.title = `${incomplete} incomplete tasks`;
     else document.title = 'All tasks complete!';
@@ -24,7 +31,7 @@ function ToDo() {
   return(
     <Container>
       <Form updateList={ setList } allTasks={ list } />
-      <List list={ list } />
+      <List list={ list } updateList={ setList } updateTask= { updateTask }/>
     </Container>
   )
 }
