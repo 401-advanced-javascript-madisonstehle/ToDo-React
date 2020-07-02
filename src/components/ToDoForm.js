@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import useForm from '../hooks/useForm.js'
+
 function ToDoForm(props) {
-  const [ description, setDescription ] = useState(props.description || '');
-  const [ assignedTo, setAssignedTo ] = useState(props.assignedTo || '');
-  const [ status, setStatus ] = useState(props.status || 'Incomplete');
-  const [ difficulty, setDifficulty ] = useState(props.difficulty || 1);
+  const [update, submit, data] = useForm(props.addTask);
+
+  // const [ description, setDescription ] = useState(props.description || '');
+  // const [ assignedTo, setAssignedTo ] = useState(props.assignedTo || '');
+  // const [ status, setStatus ] = useState(props.status || 'Incomplete');
+  // const [ difficulty, setDifficulty ] = useState(props.difficulty || 1);
 
 
-  function updateList(e) {
-    e.preventDefault();
-    let item = { description, assignedTo, status, difficulty }
-    props.updateList( [ ...props.allTasks, item ] );
-  }
+  // function updateList(e) {
+  //   e.preventDefault();
+  //   let item = { description, assignedTo, status, difficulty }
+  //   props.updateList( [ ...props.allTasks, item ] );
+  // }
 
   return (            
     <Form>
@@ -22,9 +26,10 @@ function ToDoForm(props) {
         <Form.Control
             as='textarea'
             rows='3'
-            value={description}
+            // value={description}
             onChange={(e) => {
-              setDescription(e.target.value);
+              // setDescription(e.target.value);
+              update('description', e.target.value);
             }}
           />
       </Form.Group>
@@ -34,9 +39,10 @@ function ToDoForm(props) {
         <Form.Control
             type='text'
             placeholder='Enter name'
-            value={assignedTo}
+            // value={assignedTo}
             onChange={(e) => {
-              setAssignedTo(e.target.value);
+              // setAssignedTo(e.target.value);
+              update('assignedTo', e.target.value);
             }}    
           />
       </Form.Group>
@@ -46,10 +52,11 @@ function ToDoForm(props) {
         <Form.Check
             id='status-switch'
             type='checkbox'
-            label={!status ? 'Complete' : 'Incomplete'}
-            checked={!status}
+            label={!data.status ? 'Complete' : 'Incomplete'}
+            checked={!data.status}
             onChange={(e) => {
-              setStatus(!status);
+              // setStatus(!status);
+              update('status', !e.target.checked);
             }}
         />
       </Form.Group>
@@ -61,14 +68,16 @@ function ToDoForm(props) {
           min={1}
           max={5}
           step={1}
-          value={difficulty}
+          // value={difficulty}
           onChange={(e) => {
-            setDifficulty(e.target.value);
+            // setDifficulty(e.target.value);
+            update('difficulty', e.target.value);
+
           }}
         />
       </Form.Group>
 
-      <Button variant='primary' size='lg' type='submit' onClick={ updateList }>Submit</Button>
+      <Button variant='primary' size='lg' type='submit' onClick={ useForm }>Submit</Button>
     </Form>
   )
 }

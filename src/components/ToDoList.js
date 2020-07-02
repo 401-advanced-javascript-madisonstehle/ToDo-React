@@ -7,7 +7,7 @@ function List(props) {
   let items = [];
 
   for ( let i = 0; i < props.list.length; i++ ) {
-    items.push(<Item item={props.list[i]} key={i} idx={i} updateTask={props.updateTask}/>);
+    items.push(<Item item={props.list[i]} key={i} idx={i} deleteTask= {props.deleteTask} updateTask={props.updateTask}/>);
   }
 
   return (

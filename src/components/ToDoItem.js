@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 function Item(props) {
   const [ status, setStatus ] = useState(props.item.status)
@@ -35,6 +36,8 @@ function Item(props) {
                 }}
             />
           </Form.Group>
+
+          <Button variant='primary' size='sm' type='submit' onClick={ props.deleteTask }>Delete</Button>
         </Form>
       </Card.Body>
     </Card>

@@ -4,14 +4,42 @@ import Container from 'react-bootstrap/Container';
 import Form from './ToDoForm.js';
 import List from './ToDoList.js';
 
+import useFetch from '../hooks/useFetch.js';
+
 function ToDo() {
   const [ list, setList ] = useState([]);
+  const { setRequest, response } = useFetch({
+    url: 'https://todo-server-401n16.herokuapp.com/api/v1/todo',
+  });
 
-  function updateTask(idx, updatedTask) {
-    let currentTasks = [...list];
-    currentTasks[idx] = updatedTask;
-    setList(currentTasks);
+  async function addTask(taskDetails) {
+    await setRequest({
+      url: 'https://todo-server-401n16.herokuapp.com/api/v1/todo',
+      method: 'POST',
+      body: taskDetails,
+    });
+  };
+
+  async function updateTask(idx, updatedTask) {
+    await setRequest({
+      url: `https://todo-server-401n16.herokuapp.com/api/v1/todo/${response[idx]._id}`,
+      method: 'PUT',
+      body: updatedTask
+    })
+  };
+
+  async function deleteTask(idx) {
+    await setRequest({
+    url: `https://todo-server-401n16.herokuapp.com/api/v1/todo/${response[idx]._id}`,
+    method: 'DELETE',
+    });
   }
+
+  // function updateTask(idx, updatedTask) {
+  //   let currentTasks = [...list];
+  //   currentTasks[idx] = updatedTask;
+  //   setList(currentTasks);
+  // }
 
   useEffect(() => {
     let incomplete = 0;
