@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 function Item(props) {
-  const [ status, setStatus ] = useState(props.item.status)
-
   return (
     <Card border='dark'>
       <Card.Body>
         <Card.Title as='h5'>Task:</Card.Title>
-        <Card.Text>{props.item.description}</Card.Text>
+        <Card.Text>{props.item.text}</Card.Text>
 
         <Card.Title as='h5'>Assigned To:</Card.Title>
-        <Card.Text>{props.item.assignedTo}</Card.Text>
+        <Card.Text>{props.item.assignee}</Card.Text>
 
         <Card.Title as='h5'>Difficulty:</Card.Title>
         <Card.Text>{props.item.difficulty}</Card.Text>
@@ -21,20 +21,28 @@ function Item(props) {
         <Form>
           <Form.Group controlId={`status-${props.idx}`}>
             <Form.Check
-                variant=''
-                id={`status-switch-${props.idx}`}
+                value={props.item.complete}
                 type='checkbox'
-                label={!status ? 'Complete' : 'Incomplete'}
-                checked={!status}
                 onChange={(e) => {
                   let newTask = {...props.item};
-                  newTask.status = !status;
+                  newTask.complete = !newTask.complete;
 
-                  setStatus(!status);
                   props.updateTask(props.idx, newTask);
                 }}
+                id={`complete-box-${props.idx}`}
+                label={props.item.complete ? 'Complete' : 'Incomplete'}
+                checked={props.item.complete}
             />
           </Form.Group>
+
+          <Button 
+            variant='primary' 
+            size='sm' 
+            onClick={ () => {
+              props.deleteTask(props.idx);
+            } }
+          >Delete</Button>
+
         </Form>
       </Card.Body>
     </Card>
