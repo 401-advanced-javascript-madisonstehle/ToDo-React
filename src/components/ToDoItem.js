@@ -9,10 +9,10 @@ function Item(props) {
     <Card border='dark'>
       <Card.Body>
         <Card.Title as='h5'>Task:</Card.Title>
-        <Card.Text>{props.item.description}</Card.Text>
+        <Card.Text>{props.item.text}</Card.Text>
 
         <Card.Title as='h5'>Assigned To:</Card.Title>
-        <Card.Text>{props.item.assignedTo}</Card.Text>
+        <Card.Text>{props.item.assignee}</Card.Text>
 
         <Card.Title as='h5'>Difficulty:</Card.Title>
         <Card.Text>{props.item.difficulty}</Card.Text>

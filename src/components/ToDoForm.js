@@ -15,7 +15,7 @@ function ToDoForm(props) {
             as='textarea'
             rows='3'
             onChange={(e) => {
-              update('description', e.target.value);
+              update('text', e.target.value);
             }}
           />
       </Form.Group>
@@ -26,13 +26,13 @@ function ToDoForm(props) {
             type='text'
             placeholder='Enter name'
             onChange={(e) => {
-              update('assignedTo', e.target.value);
+              update('assignee', e.target.value);
             }}    
           />
       </Form.Group>
 
       <Form.Group controlId='status'>
-        <Form.Label>Completed: </Form.Label>
+        <Form.Label>Status: </Form.Label>
         <Form.Check
             id='status-box'
             type='checkbox'
