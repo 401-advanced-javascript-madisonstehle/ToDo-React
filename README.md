@@ -7,7 +7,7 @@
 
 - [submission PR](https://github.com/madisonstehle/ToDo-React/pull/3)
 - [ci/cd github actions](https://github.com/madisonstehle/ToDo-React/actions)
-- [netlify deployed site](https://hungry-joliot-61928d.netlify.app/)
+- [netlify deployed site](https://blissful-elion-18e5f3.netlify.app/)
 
 
 ### Setup
@@ -21,5 +21,4 @@
 - `npm test` will run tests for App and Counter
 
 ### UML
-![Lab 26 UML](./assets/lab26.png)
 ![Lab 27 UML](./assets/lab27.png)
