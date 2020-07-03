@@ -11,6 +11,7 @@ function useForm(callback, initData) {
   }
 
   function submitForm(e) {
+    console.log('SUBMITTED');
     e.preventDefault();
 
     callback(formData);

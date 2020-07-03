@@ -12,11 +12,13 @@ function ToDo(props) {
   });
 
   async function addTask(taskDetails) {
+    console.log('TODO POST:', taskDetails);
+
     await setRequest({
       url: 'https://todo-server-401n16.herokuapp.com/api/v1/todo',
       method: 'POST',
       body: taskDetails,
-      runGet: 'https://todo-server-401n16.herokuapp.com/api/v1/todo'
+      runGet: 'https://todo-server-401n16.herokuapp.com/api/v1/todo',
     });
   };
 

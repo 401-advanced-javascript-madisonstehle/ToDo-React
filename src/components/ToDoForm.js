@@ -5,10 +5,10 @@ import Button from 'react-bootstrap/Button';
 import useForm from '../hooks/useForm.js'
 
 function ToDoForm(props) {
-  const [update, submit, data] = useForm(props.addTask);
+  const [update, submitForm, data] = useForm(props.addTask);
 
   return (            
-    <Form onSubmit= { submit }>
+    <Form onSubmit= { submitForm }>
       <Form.Group controlId='description'>
         <Form.Label>Task Description: </Form.Label>
         <Form.Control
@@ -61,7 +61,8 @@ function ToDoForm(props) {
       <Button 
         variant='primary' 
         size='lg' 
-        type='submit' 
+        type='submit'
+        onClick={ submitForm }
       >Submit</Button>
     </Form>
   )

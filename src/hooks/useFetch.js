@@ -13,6 +13,8 @@ function useFetch(initRequest) {
       await setError(null);
       await setResponse(null);
 
+      console.log('FETCH:', request);
+
       let res = await fetch(request.url ? request.url : url, {
         method: request.method || 'GET',
         body: JSON.stringify(request.body) || null,
@@ -42,9 +44,10 @@ function useFetch(initRequest) {
       };
 
       await setResponse(await res.json());
-    };
 
-    if (request) customFetch();
+    }
+
+    if(request) customFetch();
 
   }, [request, url]);
 
