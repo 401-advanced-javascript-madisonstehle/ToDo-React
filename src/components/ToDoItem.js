@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 function Item(props) {
-  const [ status, setStatus ] = useState(props.item.status)
-
   return (
     <Card border='dark'>
       <Card.Body>
@@ -22,22 +21,28 @@ function Item(props) {
         <Form>
           <Form.Group controlId={`status-${props.idx}`}>
             <Form.Check
-                variant=''
-                id={`status-switch-${props.idx}`}
+                value={props.item.status}
                 type='checkbox'
-                label={!status ? 'Complete' : 'Incomplete'}
-                checked={!status}
                 onChange={(e) => {
                   let newTask = {...props.item};
-                  newTask.status = !status;
+                  newTask.status = !newTask.status;
 
-                  setStatus(!status);
                   props.updateTask(props.idx, newTask);
                 }}
+                id={`status-box-${props.idx}`}
+                label={props.item.status ? 'Complete' : 'Incomplete'}
+                checked={props.item.status}
             />
           </Form.Group>
 
-          <Button variant='primary' size='sm' type='submit' onClick={ props.deleteTask }>Delete</Button>
+          <Button 
+            variant='primary' 
+            size='sm' 
+            onClick={ () => {
+              props.deleteTask(props.idx);
+            } }
+          >Delete</Button>
+
         </Form>
       </Card.Body>
     </Card>

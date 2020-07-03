@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-function useFetch() {
+function useFetch(initRequest) {
   const [url, setUrl] = useState('');
-  const [request, setRequest] = useState({});
+  const [request, setRequest] = useState(initRequest);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
-  const [response, setResponse] = useState({});
+  const [response, setResponse] = useState();
 
   useEffect(() => {
     async function customFetch() {
@@ -13,24 +13,48 @@ function useFetch() {
       await setError(null);
       await setResponse(null);
 
-      let res = fetch(request.url ? request.url : url, {
+      let res = await fetch(request.url ? request.url : url, {
         method: request.method || 'GET',
         body: JSON.stringify(request.body) || null,
         headers: {
           ...request.headers,
-          'contentType': 'application/json',
+          'content-type': 'application/json',
           Accept: 'application/json'
         },
       });
 
+      if (request.runGet) {
+        res = await fetch(request.runGet, {
+          method: 'GET',
+          headers: {
+            ...request.headers,
+            'content-type': 'application/json',
+            Accept: 'application/json',
+          }
+        })
+      }
+
       await setIsLoading(false);
 
-      if (res.status === 200) {
-
+      if (res.status >= 300) {
+        await setError(res);
+        return;
       };
-      
+
+      await setResponse(await res.json());
     };
-  });
+
+    if (request) customFetch();
+
+  }, [request, url]);
+
+  return {
+    setUrl,
+    setRequest,
+    isLoading,
+    error,
+    response,
+  };
 }
 
 export default useFetch;

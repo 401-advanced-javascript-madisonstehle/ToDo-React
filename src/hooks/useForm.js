@@ -4,7 +4,7 @@ function useForm(callback, initData) {
   const [formData, setFormData] = useState(initData || {});
 
   function updateForm(key, value) {
-    let newFormData = {...formData};
+    let newFormData = { ...formData };
     newFormData[key] = value;
 
     setFormData(newFormData);
@@ -16,7 +16,7 @@ function useForm(callback, initData) {
     callback(formData);
   }
 
-  return [updateForm, submitForm];
+  return [updateForm, submitForm, formData];
 }
 
 export default useForm;
