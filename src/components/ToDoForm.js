@@ -39,7 +39,7 @@ function ToDoForm(props) {
             label={data.status ? 'Complete' : 'Incomplete'}
             checked={data.status}
             onChange={(e) => {
-              update('status', e.target.checked);
+              update('complete', e.target.checked);
             }}
         />
       </Form.Group>

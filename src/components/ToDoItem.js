@@ -21,17 +21,17 @@ function Item(props) {
         <Form>
           <Form.Group controlId={`status-${props.idx}`}>
             <Form.Check
-                value={props.item.status}
+                value={props.item.complete}
                 type='checkbox'
                 onChange={(e) => {
                   let newTask = {...props.item};
-                  newTask.status = !newTask.status;
+                  newTask.complete = !newTask.complete;
 
                   props.updateTask(props.idx, newTask);
                 }}
-                id={`status-box-${props.idx}`}
-                label={props.item.status ? 'Complete' : 'Incomplete'}
-                checked={props.item.status}
+                id={`complete-box-${props.idx}`}
+                label={props.item.complete ? 'Complete' : 'Incomplete'}
+                checked={props.item.complete}
             />
           </Form.Group>
 
